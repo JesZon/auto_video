@@ -1,0 +1,163 @@
+{
+  "4": {
+    "inputs": {
+      "model_name": "2x_ModernSpanimationV1.pth",
+      "rescale_after_model": true,
+      "rescale_method": "lanczos",
+      "rescale": "by percentage",
+      "percent": 75,
+      "width": 1024,
+      "height": 1024,
+      "longer_side": 1520,
+      "crop": "disabled",
+      "image_output": "Hide",
+      "link_id": 0,
+      "save_prefix": "ComfyUI",
+      "pipe": [
+        "12",
+        0
+      ],
+      "image": [
+        "12",
+        1
+      ]
+    },
+    "class_type": "easy hiresFix",
+    "_meta": {
+      "title": "高清修复"
+    }
+  },
+  "9": {
+    "inputs": {
+      "steps": 18,
+      "cfg": 4.5,
+      "sampler_name": "euler",
+      "scheduler": "align_your_steps",
+      "denoise": 1,
+      "seed": 4678,
+      "pipe": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "easy preSampling",
+    "_meta": {
+      "title": "预采样参数（基础）"
+    }
+  },
+  "10": {
+    "inputs": {
+      "ckpt_name": "fnMixNoobXL_v172.safetensors",
+      "config_name": "Default",
+      "vae_name": "Baked VAE",
+      "clip_skip": -2,
+      "lora_name": "jiraikei_noobai_V1.0.safetensors",
+      "lora_model_strength": 0,
+      "lora_clip_strength": 0,
+      "resolution": "768 x 1344",
+      "empty_latent_width": 1024,
+      "empty_latent_height": 1360,
+      "positive": "(empty hospital chair), (sunlight through blinds), (abandoned bouquet), (close-up of audiogram chart), (dust particles in light beam), (lonely atmosphere), (subtle text shadow), minimalistic composition",
+      "positive_token_normalization": "none",
+      "positive_weight_interpretation": "A1111",
+      "negative": "crowded scene, happy elements, clean modern hospital",
+      "negative_token_normalization": "none",
+      "negative_weight_interpretation": "A1111",
+      "batch_size": 1,
+      "a1111_prompt_style": false
+    },
+    "class_type": "easy fullLoader",
+    "_meta": {
+      "title": "简易加载器 (完整版)"
+    }
+  },
+  "11": {
+    "inputs": {
+      "steps": 5,
+      "cfg": 2,
+      "sampler_name": "euler",
+      "scheduler": "sgm_uniform",
+      "denoise": 0.3,
+      "seed": 4678,
+      "pipe": [
+        "12",
+        0
+      ],
+      "image_to_latent": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "easy preSampling",
+    "_meta": {
+      "title": "预采样参数（基础）"
+    }
+  },
+  "12": {
+    "inputs": {
+      "image_output": "Hide",
+      "link_id": 0,
+      "save_prefix": "ComfyUI",
+      "pipe": [
+        "9",
+        0
+      ]
+    },
+    "class_type": "easy kSampler",
+    "_meta": {
+      "title": "简易K采样器"
+    }
+  },
+  "15": {
+    "inputs": {
+      "image_output": "Hide",
+      "link_id": 0,
+      "save_prefix": "ComfyUI",
+      "pipe": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "easy kSampler",
+    "_meta": {
+      "title": "简易K采样器"
+    }
+  },
+  "16": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "15",
+        1
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  },
+  "19": {
+    "inputs": {
+      "images": [
+        "12",
+        1
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "预览图像"
+    }
+  },
+  "22": {
+    "inputs": {
+      "value": 4678,
+      "mode": true,
+      "action": "increment",
+      "last_seed": 4677
+    },
+    "class_type": "easy globalSeed",
+    "_meta": {
+      "title": "全局随机种"
+    }
+  }
+}
